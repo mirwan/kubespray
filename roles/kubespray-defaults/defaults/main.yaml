@@ -265,6 +265,9 @@ docker_plugins: []
 # Experimental kubeadm etcd deployment mode. Available only for new deployment
 etcd_kubeadm_enabled: false
 
+# HA setup for etcd when kubeadm etcd deployment mode is enabled
+etcd_kubeadm_ha: false
+
 # Containerd options
 containerd_use_systemd_cgroup: false
 

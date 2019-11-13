@@ -5,6 +5,9 @@ etcd_data_dir: /var/lib/etcd
 ## Experimental kubeadm etcd deployment mode. Available only for new deployment
 etcd_kubeadm_enabled: false
 
+## HA setup for etcd when kubeadm etcd deployment mode is enabled
+etcd_kubeadm_ha: false
+
 ## Directory where the binaries will be installed
 bin_dir: /usr/local/bin
 

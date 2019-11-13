@@ -44,6 +44,15 @@ etcd:
     imageTag: "{{ etcd_image_tag }}"
     dataDir: "{{ etcd_data_dir }}"
     extraArgs:
+{% if etcd_kubeadm_ha %}
+      initial-cluster: {{ etcd_peer_addresses }}
+      initial-cluster-state: {{ (kubeadm_already_run.stat.exists)|ternary('existing', 'new') }}
+      name: {{ etcd_member_name }}
+      listen-peer-urls: https://{{ etcd_address }}:2380
+      listen-client-urls: https://{{ etcd_address }}:2379,https://127.0.0.1:2379
+      advertise-client-urls: {{ etcd_client_url }}
+      initial-advertise-peer-urls: {{ etcd_peer_url }}
+{% endif %}
       metrics: {{ etcd_metrics }}
       election-timeout: "{{ etcd_election_timeout }}"
       heartbeat-interval: "{{ etcd_heartbeat_interval }}"
